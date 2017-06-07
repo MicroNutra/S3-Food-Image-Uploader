@@ -24,12 +24,12 @@ function uploadImage(event) {
 }
 
 function displayImages() {
-  let baseUrl = "https://s3-us-west-2.amazonaws.com/imagedemobucket/"
+  let baseUrl = "https://s3-us-west-2.amazonaws.com/microlens/"
   $.get('/image')
     .then(result => {
       $('section').html('')
       result.resp.Contents.forEach(image => {
-        $('section').append(`<img src="${baseUrl + image.Key}" alt="not an image">`) 
+        $('section').append(`<img src= ${baseUrl + image.Key} alt="not an image">`)
       })
     })
 }
