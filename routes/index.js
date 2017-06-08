@@ -23,6 +23,7 @@ router.get('/image', (req, res, next) => {
 
 router.post('/image', upload.single('image'), (req, res) => {
   let id = uuid();
+  console.log(req.file);
   s3.putObject({
     Bucket: process.env.S3_BUCKET,
     Key: id,
