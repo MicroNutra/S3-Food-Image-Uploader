@@ -26,8 +26,9 @@ router.post('/image', upload.single('image'), (req, res) => {
   console.log(req.file);
   s3.putObject({
     Bucket: process.env.S3_BUCKET,
-    Key: id,
-    Body: new Buffer(req.file.buffer)
+    Key: id + '.png',
+    Body: new Buffer(req.file.buffer),
+    ContentType: 'image/png'
   }, err => {
     if (err) {
       next(err)
