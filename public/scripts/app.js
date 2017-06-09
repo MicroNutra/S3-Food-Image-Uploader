@@ -34,10 +34,10 @@ function displayImages() {
       $('section').html('')
       result.resp.Contents.forEach(image => {
         $('section').append(`<img src= ${baseUrl + image.Key} alt="not an image">`)
-        console.log($('img').attr('src'));
+        console.log($('img').attr('src')); //logs first in alphanumeric array
         key.push(image.Key);
       })
-      return
+    //   return $('img').attr('src')
     })
     .then(() => {
       getNeuralNet()
@@ -47,16 +47,24 @@ function displayImages() {
 
 function getNeuralNet () {
   const baseUrl = "https://s3-us-west-2.amazonaws.com/microlens/"
-  console.log(key);
-  console.log(baseUrl + key[key.length-1]);
+  // console.log(key);
+  console.log(baseUrl + key[key.length-1]); //logs last in alphanumeric array
+
   // key.forEach(item => {
   //   console.log(baseUrl + item);
   // })
-  // let url = 'https://dsi-seefood.herokuapp.com/api?key=89477&link='
-  // let requestUrl = url + key[key.length-1]
-  // console.log(requestUrl);
-  // $.get('')
+
+  let url = 'https://dsi-seefood.herokuapp.com/api?key=89477&link='
+  let requestUrl = url + baseUrl + key[key.length-1]
+  console.log(requestUrl);
+  $.get(requestUrl)
+    .then(result => {
+        console.log(result);
+        
+    })
+
 }
+
 
 function normalizeData(item) {
       console.log(item);
