@@ -1,5 +1,6 @@
 $(() => {
   displayImages()
+  getNeuralNet()
   $('form').submit(uploadImage)
 })
 
@@ -23,16 +24,38 @@ function uploadImage(event) {
   });
 }
 
+
+var key = []
+
 function displayImages() {
-  let baseUrl = "https://s3-us-west-2.amazonaws.com/microlens/"
+  const baseUrl = "https://s3-us-west-2.amazonaws.com/microlens/"
   $.get('/image')
     .then(result => {
-       normalizeData(result)    
       $('section').html('')
       result.resp.Contents.forEach(image => {
         $('section').append(`<img src= ${baseUrl + image.Key} alt="not an image">`)
+        console.log($('img').attr('src'));
+        key.push(image.Key);
       })
+      return
     })
+    .then(() => {
+      getNeuralNet()
+    })
+    .catch(err => console.log(err))
+}
+
+function getNeuralNet () {
+  const baseUrl = "https://s3-us-west-2.amazonaws.com/microlens/"
+  console.log(key);
+  console.log(baseUrl + key[key.length-1]);
+  // key.forEach(item => {
+  //   console.log(baseUrl + item);
+  // })
+  // let url = 'https://dsi-seefood.herokuapp.com/api?key=89477&link='
+  // let requestUrl = url + key[key.length-1]
+  // console.log(requestUrl);
+  // $.get('')
 }
 
 function normalizeData(item) {
@@ -126,9 +149,6 @@ function normalizeData(item) {
        }
       else if(item.name.includes("Carbohydrate")){
           item.name = "carbohydrates"
-       }
-      else if(item.name.includes("Energy")){
-          item.name = "calories"
        }
       else if(item.name.includes("Fiber")){
           item.name = "fibers"
