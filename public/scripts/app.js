@@ -46,7 +46,7 @@ function displayImages() {
 }
 
 function getNeuralNet () {
-  const baseUrl = "http://s3-us-west-2.amazonaws.com/microlens/"
+  const baseUrl = "https://s3-us-west-2.amazonaws.com/microlens/"
   // console.log(key);
   console.log(baseUrl + key[key.length-1]); //logs last in alphanumeric array
 
@@ -57,7 +57,7 @@ function getNeuralNet () {
   let url = 'https://dsi-seefood.herokuapp.com/api?key=89477&link='
   let requestUrl = url + baseUrl + key[key.length-1]
   console.log(requestUrl);
-  $.get('http://microlens-proxy.herokuapp.com/?url=' + requestUrl)
+  $.get(requestUrl)
     .then(result => {
         console.log(result);
 
