@@ -57,10 +57,10 @@ function getNeuralNet () {
   let url = 'https://dsi-seefood.herokuapp.com/api?key=89477&link='
   let requestUrl = url + baseUrl + key[key.length-1]
   console.log(requestUrl);
-  $.get(requestUrl)
+  $.get('http://microlens-proxy.herokuapp.com/?url=' + requestUrl)
     .then(result => {
         console.log(result);
-        
+
     })
 
 }
