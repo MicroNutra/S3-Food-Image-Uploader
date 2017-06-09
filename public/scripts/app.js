@@ -46,7 +46,7 @@ function displayImages() {
 }
 
 function getNeuralNet () {
-  const baseUrl = "https://s3-us-west-2.amazonaws.com/microlens/"
+  const baseUrl = "http://s3-us-west-2.amazonaws.com/microlens/"
   // console.log(key);
   console.log(baseUrl + key[key.length-1]); //logs last in alphanumeric array
 
