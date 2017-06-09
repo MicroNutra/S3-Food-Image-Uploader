@@ -28,7 +28,8 @@ router.post('/image', upload.single('image'), (req, res) => {
     Bucket: process.env.S3_BUCKET,
     Key: id + '.png',
     Body: new Buffer(req.file.buffer),
-    ContentType: 'image/png'
+    ContentType: 'image/png',
+    ContentType: 'image/jpg'
   }, err => {
     if (err) {
       next(err)
